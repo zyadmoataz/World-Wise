@@ -42,3 +42,60 @@
   font-family: inherit;
   font-size: 1.2rem;
 }
+
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .form {
+    padding: 1.5rem 2rem;
+  }
+
+  .flag {
+    top: 2.2rem;
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .form {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .flag {
+    top: 2rem;
+    font-size: 2rem;
+  }
+
+  .row label {
+    font-size: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .flag {
+    top: 1.8rem;
+    font-size: 1.8rem;
+  }
+
+  .row label {
+    font-size: 0.9rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}

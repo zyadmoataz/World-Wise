@@ -7,9 +7,16 @@
 
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 2rem;
 }
 
 .cityList::-webkit-scrollbar {
   width: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cityList {
+    height: 100%;
+  }
 }

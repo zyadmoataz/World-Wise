@@ -92,7 +92,7 @@ function Form() {
   if (isLoadingGeocoding) return <Spinner />;
   if (errorGeocoding) return <Message message={errorGeocoding} />;
   if (!lat && !lng)
-    return <Message message="Start by clicking on somewhere on the map" />;
+    return <Message message='Start by clicking on somewhere on the map' />;
 
   return (
     <form
@@ -100,9 +100,9 @@ function Form() {
       onSubmit={handleSubmit}
     >
       <div className={styles.row}>
-        <label htmlFor="cityName">City name</label>
+        <label htmlFor='cityName'>City name</label>
         <input
-          id="cityName"
+          id='cityName'
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
@@ -110,31 +110,31 @@ function Form() {
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="date">When did you go to {cityName}?</label>
+        <label htmlFor='date'>When did you go to {cityName}?</label>
         {/* <input
           id="date"
           onChange={(e) => setDate(e.target.value)}
           value={date}
         /> */}
         <DatePicker
-          id="date"
+          id='date'
           onChange={(date) => setDate(date)}
           selected={date}
-          dateFormat="dd/MM/yyyy"
+          dateFormat='dd/MM/yyyy'
         />
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="notes">Notes about your trip to {cityName}</label>
+        <label htmlFor='notes'>Notes about your trip to {cityName}</label>
         <textarea
-          id="notes"
+          id='notes'
           onChange={(e) => setNotes(e.target.value)}
           value={notes}
         />
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary"> Add</Button>
+        <Button type='primary'> Add</Button>
         <BackButton />
       </div>
     </form>

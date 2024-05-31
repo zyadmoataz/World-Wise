@@ -6,15 +6,15 @@
 
 /* These CSS variables are global, so they are available in all CSS modules */
 :root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
+  --color-brand--1: #EEF7FF;
+  --color-brand--2: #77B0AA;
 
-  --color-dark--0: #242a2e;
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
-  --color-light--1: #aaa;
-  --color-light--2: #ececec;
-  --color-light--3: #d6dee0;
+  --color-dark--0: #007F73;
+  --color-dark--1: #003C43;
+  --color-dark--2: #135D66;
+  --color-light--1: #BED7DC;
+  --color-light--2: #E3FEF7;
+  --color-light--3: #77B0AA;
 }
 
 * {
@@ -48,7 +48,7 @@ textarea {
   font-size: 1.6rem;
   border: none;
   border-radius: 5px;
-  background-color: var(--color-light--3);
+  background-color: var(--color-light--2);
   transition: all 0.2s;
 }
 
@@ -64,10 +64,39 @@ input:focus {
   color: var(--color-dark--1);
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.6rem;
   font-weight: 600;
+  font-size: 1.6rem;
   padding: 1rem 3rem;
   border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.cta:hover {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--1);
+  outline: 1px solid var(--color-light--2);
+  transform: translateY(-2px);
+  box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
+
+}
+
+
+@media (max-width: 768px) {
+
+  .cta:link,
+  .cta:visited {
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .cta:link,
+  .cta:visited {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
 }
 
 /*

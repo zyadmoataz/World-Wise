@@ -1,31 +1,55 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 
-const BASE_URL = "http://localhost:8000";
+// Static data
+const staticCities = [
+  {
+    cityName: "Lisbon",
+    country: "Portugal",
+    emoji: "🇵🇹",
+    date: "2027-10-31T15:59:59.138Z",
+    notes: "My favorite city so far!",
+    position: {
+      lat: 38.727881642324164,
+      lng: -9.140900099907554,
+    },
+    id: 73930385,
+  },
+  {
+    cityName: "Tsanyawa",
+    country: "NG",
+    emoji: "🇳🇬",
+    date: "2023-12-27T09:02:22.044Z",
+    notes:
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    position: {
+      lat: 12.249724172853826,
+      lng: 8.085937500000002,
+    },
+    id: 98443209,
+  },
+  {
+    cityName: "Cairo",
+    country: "EG",
+    emoji: "🇪🇬",
+    date: "2023-12-27T10:15:37.627Z",
+    notes: "",
+    position: {
+      lat: 30.044411076137518,
+      lng: 31.235654354095463,
+    },
+    id: 98443210,
+  },
+];
 
 const initialState = {
-  cities: [],
+  cities: staticCities,
   isLoading: false,
   currentCity: {},
   error: "",
 };
 
-function redcuer(state, action) {
-  //reducer must be a pure function and we cannot make a fetch function
-  //we can make fetch requests in separate functions and after receiving data we can dipatch action to the reducer
-  //model our event names as events not just setters
+function reducer(state, action) {
   switch (action.type) {
-    case "loading":
-      return { ...state, isLoading: true };
-
-    case "cities/loaded":
-      return { ...state, isLoading: false, cities: action.payload };
-
     case "city/loaded":
       return { ...state, isLoading: false, currentCity: action.payload };
 
@@ -36,7 +60,7 @@ function redcuer(state, action) {
         cities: [...state.cities, action.payload],
         currentCity: action.payload,
       };
-    // currentCity is responsible for making border on the selected city after adding it
+
     case "city/deleted":
       return {
         ...state,
@@ -44,14 +68,16 @@ function redcuer(state, action) {
         cities: state.cities.filter((city) => city.id !== action.payload),
         currentCity: {},
       };
+
     case "rejected":
       return {
         ...state,
         isLoading: false,
         error: action.payload,
       };
+
     default:
-      throw new Error("Unkown Action Type!");
+      throw new Error("Unknown Action Type!");
   }
 }
 
@@ -59,73 +85,30 @@ const CitiesContext = createContext();
 
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
-    redcuer,
+    reducer,
     initialState
   );
-  //it would be better to make everything inside the dispatch function if it was a sync code but this is async code
-
-  useEffect(function () {
-    async function fetchCities() {
-      dispatch({ type: "loading" });
-      try {
-        const response = await fetch(`${BASE_URL}/cities`);
-        const data = await response.json();
-        // setCities(data);
-        dispatch({ type: "cities/loaded", payload: data });
-      } catch (err) {
-        dispatch({ type: "rejected", payload: "Error in loading the cities." });
-      }
-    }
-    fetchCities();
-  }, []);
 
   const getCity = useCallback(
-    async function getCity(id) {
-      // convert id to a number as its a string as its coming from url
-      if (+id === currentCity.id) return; //no need to fetch data if we have same city
-      dispatch({ type: "loading" });
-      try {
-        const response = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await response.json();
-        // setCurrentCity(data);
-        dispatch({ type: "city/loaded", payload: data });
-      } catch {
-        dispatch({ type: "rejected", payload: "Error in loading the city." });
+    function getCity(id) {
+      const city = cities.find((city) => city.id === +id);
+      if (city) {
+        dispatch({ type: "city/loaded", payload: city });
+      } else {
+        dispatch({ type: "rejected", payload: "City not found." });
       }
     },
-    [currentCity.id]
+    [cities]
   );
 
-  async function createCity(cityObj) {
-    dispatch({ type: "loading" });
-    try {
-      const response = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(cityObj),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await response.json();
-      // setCities([...cities, data]);
-      dispatch({ type: "city/created", payload: data });
-    } catch {
-      dispatch({ type: "rejected", payload: "Error in creating the city." });
-    }
+  function createCity(cityObj) {
+    dispatch({ type: "city/created", payload: cityObj });
   }
 
-  async function deleteCity(id) {
-    dispatch({ type: "loading" });
-    try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
-      });
-      // setCities((cities) => cities.filter((city) => city.id !== id));
-      dispatch({ type: "city/deleted", payload: id });
-    } catch {
-      dispatch({ type: "rejected", payload: "Error in deleteing the city." });
-    }
+  function deleteCity(id) {
+    dispatch({ type: "city/deleted", payload: id });
   }
 
-  // no need to memoize this value as the provider is the parent of the app component
   return (
     <CitiesContext.Provider
       value={{
@@ -146,7 +129,7 @@ function CitiesProvider({ children }) {
 function useCities() {
   const context = useContext(CitiesContext);
   if (context === undefined)
-    throw new Error("Context Is Used Outside The Provider");
+    throw new Error("Context is used outside the provider");
   return context;
 }
 

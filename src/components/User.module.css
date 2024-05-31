@@ -32,3 +32,49 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+
+@media (max-width: 768px) {
+  .user {
+    top: 4rem;
+    right: 4rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    gap: 2rem;
+  }
+
+  .user img {
+    height: 4rem;
+  }
+
+  .user button {
+    border-radius: 5px;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user {
+    top: 2rem;
+    right: 2rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    gap: 1rem;
+  }
+
+  .user img {
+    height: 3rem;
+  }
+
+  .user button {
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}

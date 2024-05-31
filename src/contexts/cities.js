@@ -1,0 +1,41 @@
+export const cities = {
+  cities: [
+    {
+      cityName: "Lisbon",
+      country: "Portugal",
+      emoji: "🇵🇹",
+      date: "2027-10-31T15:59:59.138Z",
+      notes: "My favorite city so far!",
+      position: {
+        lat: 38.727881642324164,
+        lng: -9.140900099907554,
+      },
+      id: 73930385,
+    },
+    {
+      cityName: "Tsanyawa",
+      country: "NG",
+      emoji: "🇳🇬",
+      date: "2023-12-27T09:02:22.044Z",
+      notes:
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      position: {
+        lat: "12.249724172853826",
+        lng: "8.085937500000002",
+      },
+      id: 98443209,
+    },
+    {
+      cityName: "Cairo",
+      country: "EG",
+      emoji: "🇪🇬",
+      date: "2023-12-27T10:15:37.627Z",
+      notes: "",
+      position: {
+        lat: "30.044411076137518",
+        lng: "31.235654354095463",
+      },
+      id: 98443210,
+    },
+  ],
+};

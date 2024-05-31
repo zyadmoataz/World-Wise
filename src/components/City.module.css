@@ -47,3 +47,27 @@
   font-size: 1.6rem;
   color: var(--color-brand--1);
 }
+
+/* Small devices (phones, 576px and up) */
+@media (max-width: 576px) {
+  .city h6 {
+    font-size: 1rem;
+    /* Adjust as needed */
+  }
+
+  .city h3 {
+    font-size: 1.4rem;
+    /* Adjust as needed */
+  }
+
+  .city h3 span {
+    font-size: 2rem;
+    /* Adjust as needed */
+  }
+
+  .city p,
+  .city a {
+    font-size: 1.2rem;
+    /* Adjust as needed */
+  }
+}

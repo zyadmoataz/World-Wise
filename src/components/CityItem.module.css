@@ -23,16 +23,22 @@
 .emoji {
   font-size: 2.6rem;
   line-height: 1;
+  color: var(--color-brand--2);
+  transform: translateY(-3px);
 }
 
 .name {
-  font-size: 1.7rem;
+  flex: 1;
+  margin: auto;
+  text-transform: capitalize;
+  font-size: 1.6rem;
   font-weight: 600;
-  margin-right: auto;
+  /* margin-right: auto; */
+  color: var(--color-light--2);
 }
 
 .date {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .deleteBtn {
@@ -51,4 +57,22 @@
 .deleteBtn:hover {
   background-color: var(--color-brand--1);
   color: var(--color-dark--1);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cityItem {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .name {
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    font-size: 1.3rem;
+  }
 }

@@ -10,3 +10,10 @@
   align-content: start;
   gap: 1.6rem;
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .countryList {
+    grid-template-columns: 1fr;
+  }
+}

@@ -40,7 +40,7 @@ function Map() {
   useEffect(
     function () {
       if (geolocationPosition)
-        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+        setMapPosition([geolocationPosition?.lat, geolocationPosition?.lng]);
     },
     [geolocationPosition]
   );
@@ -48,7 +48,7 @@ function Map() {
     <div className={styles.mapContainer}>
       {/* if we didnt get our location only show this button */}
       {!geolocationPosition && (
-        <Button type="position" onClick={getPosition}>
+        <Button type='position' onClick={getPosition}>
           {isLoadingPosition ? "Loading..." : "Use Your Position "}
         </Button>
       )}
@@ -60,7 +60,7 @@ function Map() {
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
         />
         {/*change ".org" to ".fr/hot" to get better */}
 

@@ -1,19 +1,119 @@
-.sidebar {
-  flex-basis: 56rem;
-  background-color: var(--color-dark--1);
-  padding: 3rem 5rem 3.5rem 5rem;
+  .sidebar {
+    flex-basis: 56rem;
+    background-color: var(--color-dark--1);
+    padding: 0rem 5rem 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 4.8rem);
+    transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+  }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: calc(100vh - 4.8rem);
-}
+  .footer {
+    margin-top: 2rem;
+  }
 
-.footer {
-  margin-top: auto;
-}
+  .copyright {
+    font-size: 1.2rem;
+    color: var(--color-light--1);
+  }
 
-.copyright {
-  font-size: 1.2rem;
-  color: var(--color-light--1);
-}
+  .toggleButton {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  .expanded {
+    height: 100%;
+  }
+
+  @media (max-width: 1200px) {
+    .sidebar {
+      flex-basis: 100%;
+      padding: 1rem 2rem;
+      height: 50%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+    }
+
+    .toggleButton {
+      display: block;
+    }
+
+    .expanded {
+      height: 100%;
+    }
+
+    .footer {
+      margin-top: 1rem;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      flex-basis: 100%;
+      padding: 1rem 2rem;
+      height: 50%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out, height 0.3s ease-in-out;
+    }
+
+    .toggleButton {
+      display: block;
+    }
+
+    .expanded {
+      height: 100%;
+    }
+
+    .footer {
+      margin-top: 1rem;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .sidebar {
+      padding: 1rem;
+
+    }
+
+    .toggleButton {
+      font-size: 2rem;
+    }
+
+    .expanded {
+      height: 100%;
+    }
+
+    .footer {
+      margin-top: 1rem;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
